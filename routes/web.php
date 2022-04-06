@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPanel\HomeController as AdminPanelHomeController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,3 +41,8 @@ Route::post('/save',[HomeController::class,'save'])->name('save');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+// ************************ ADMIN PANEL ROUTES ************************
+    Route::get('/admin',[AdminPanelHomeController::class,'index'])->name('admin');
+
+?>
