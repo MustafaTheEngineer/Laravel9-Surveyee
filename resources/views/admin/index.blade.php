@@ -134,7 +134,7 @@
                         <h3 class="title-5 m-b-35">statistics</h3>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="tables">
                     <div class="col-md-6 col-lg-4">
                         <!-- CHART-->
                         <div class="statistic-chart-1">
@@ -422,7 +422,7 @@
 
 @section('js')
     <!-- Jquery JS-->
-    <script src="{{asset('adminAssets')}}/{{asset('adminAssets')}}/vendor/jquery-3.2.1.min.js"></script>
+    <script src="{{asset('adminAssets')}}/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="{{asset('adminAssets')}}/vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="{{asset('adminAssets')}}/vendor/bootstrap-4.1/bootstrap.min.js"></script>
