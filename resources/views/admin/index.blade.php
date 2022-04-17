@@ -25,6 +25,7 @@
     <link href="{{asset('adminAssets')}}/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="{{asset('adminAssets')}}/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="{{asset('adminAssets')}}/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
 
     <!-- Main CSS-->
     <link href="{{asset('adminAssets')}}/css/theme.css" rel="stylesheet" media="all">

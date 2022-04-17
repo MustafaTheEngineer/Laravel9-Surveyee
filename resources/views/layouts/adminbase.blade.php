@@ -3,6 +3,12 @@
 <head>
     @yield('head')
     <title>@yield('title')</title>
+
+    <style>
+        .page-wrapper{
+            overflow: unset;
+        }
+    </style>
 </head>
 <body class="animsition">
     <div class="page-wrapper">
