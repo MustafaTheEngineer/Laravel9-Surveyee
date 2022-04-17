@@ -10,7 +10,7 @@
             <div class="header__navbar">
                 <ul class="list-unstyled">
                     <li>
-                        <a href="/admin">
+                        <a href="{{route('admin.index')}}">
                             <i class="fas fa-tachometer-alt"></i>
                             <span class="bot-line"></span>Dashboard</a>
                     </li>
@@ -35,7 +35,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/admin/category">
+                        <a href="{{route('admin.category.index')}}">
                             <i class="fas fa-list-alt"></i>
                             <span class="bot-line"></span>Categories</a>
                     </li>

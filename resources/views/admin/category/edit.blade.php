@@ -86,7 +86,7 @@
                 <div class="card-header">
                     <strong>Category Elements</strong>
                 </div>
-                <form action="/admin/category/update/{{$data->id}}" method="post" class="form-horizontal">
+                <form action="{{route('admin.category.update',['id'=>$data->id])}}" method="post" class="form-horizontal">
                 @csrf
                 <div class="card-body card-block">
                         <div class="row form-group">

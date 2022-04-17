@@ -74,7 +74,7 @@
                     <div class="col-md-12 d-flex">
                         <h1 class="title-4">Category List
                         </h1>
-                        <a href="/admin/category/create" class="btn btn-secondary ml-5">Add Category</a>
+                        <a href="{{route('admin.category.create')}}" class="btn btn-secondary ml-5">Add Category</a>
                     </div>
                 </div>
             </div>
@@ -114,9 +114,9 @@
                                 @else
                                     <td class="denied">{{$item->status}}</td>
                                 @endif
-                                <td><a href="/admin/category/edit/{{$item->id}}" class="btn btn-warning">Edit</a></td>
-                                <td><a href="/admin/category/delete/{{$item->id}}" class="btn btn-danger">Delete</a></td>
-                                <td><a href="/admin/category/show/{{$item->id}}" class="btn btn-primary">Show</a></td>
+                                <td><a href="{{route('admin.category.edit',['id'=>$item->id])}}" class="btn btn-warning">Edit</a></td>
+                                <td><a href="{{route('admin.category.destroy',['id'=>$item->id])}}" class="btn btn-danger">Delete</a></td>
+                                <td><a href="{{route('admin.category.show',['id'=>$item->id])}}" class="btn btn-primary">Show</a></td>
                             </tr>
                             @endforeach
                         </tbody>
