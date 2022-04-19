@@ -86,7 +86,7 @@
                 <div class="card-header">
                     <strong>Category Elements</strong>
                 </div>
-                <form action="/admin/category/store" method="post" class="form-horizontal">
+                <form action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 <div class="card-body card-block">
                         <div class="row form-group">

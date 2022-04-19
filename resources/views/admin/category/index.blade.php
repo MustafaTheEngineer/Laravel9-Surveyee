@@ -108,17 +108,23 @@
                                 <td>{{$item->title}}</td>
                                 <td>{{$item->keywords}}</td>
                                 <td>{{$item->description}}</td>
-                                <td>{{$item->image}}</td>
+                                <td style="max-width: 155px; overflow: hidden;">
+                                    @if ($item->image)
+                                        <img src="{{Storage::url($item->image)}}" style="max-width: 100px;" alt="{{$item->image}}">
+                                    @endif
+                                </td>
                                 @if ($item->status == 'True')
                                     <td class="process">{{$item->status}}</td>
                                 @else
                                     <td class="denied">{{$item->status}}</td>
                                 @endif
                                 <td><a href="{{route('admin.category.edit',['id'=>$item->id])}}" class="btn btn-warning">Edit</a></td>
-                                <td><a href="{{route('admin.category.destroy',['id'=>$item->id])}}" class="btn btn-danger">Delete</a></td>
+                                <td><a href="{{route('admin.category.destroy',['id'=>$item->id])}}" class="btn btn-danger" id="delete">Delete</a></td>
                                 <td><a href="{{route('admin.category.show',['id'=>$item->id])}}" class="btn btn-primary">Show</a></td>
                             </tr>
                             @endforeach
+
+                            
                         </tbody>
                     </table>
                 </div>
@@ -132,6 +138,14 @@
 
 @section('js')
     <!-- Jquery JS-->
+    <script>
+        var del = document.getElementById("delete");
+        del.addEventListener("click", function(e){
+            console.log("sa");
+
+            e.preventDefault();
+        }); 
+    </script>
     <script src="{{asset('adminAssets')}}/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="{{asset('adminAssets')}}/vendor/bootstrap-4.1/popper.min.js"></script>
