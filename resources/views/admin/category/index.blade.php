@@ -91,9 +91,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>PARENT ID</th>
                                 <th>TITLE</th>
-                                <th>KEYWORDS</th>
-                                <th>DESCRIPTION</th>
                                 <th>IMAGE</th>
                                 <th>STATUS</th>
                                 <th>EDIT</th>
@@ -105,9 +104,8 @@
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
+                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($item, $item->title)}}</td>
                                 <td>{{$item->title}}</td>
-                                <td>{{$item->keywords}}</td>
-                                <td>{{$item->description}}</td>
                                 <td style="max-width: 155px; overflow: hidden;">
                                     @if ($item->image)
                                         <img src="{{Storage::url($item->image)}}" style="max-width: 100px;" alt="{{$item->image}}">

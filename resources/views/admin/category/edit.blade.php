@@ -89,6 +89,23 @@
                 <form action="{{route('admin.category.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 <div class="card-body card-block">
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="">Parent Category</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select class="form-control select2" name="parent_id" id="">
+                                <option value="0" selected>Main Category</option>
+                                @foreach ($datalist as $rs)
+                                    <option value="{{$rs->id}}" @if ($rs->id == $data->parent_id) selected @endif>
+                                        {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs, $rs->title)}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                         <div class="row form-group">
                             <div class="col col-md-3">
                                 <label for="text-input" class=" form-control-label">Title</label>
