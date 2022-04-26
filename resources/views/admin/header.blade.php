@@ -15,7 +15,7 @@
                             <span class="bot-line"></span>Dashboard</a>
                     </li>
                     <li class="has-sub">
-                        <a href="#">
+                        <a href="{{route('admin.survey.index')}}">
                             <i class="fas fa-th"></i>Surveys
                             <span class="bot-line"></span>
                         </a>
