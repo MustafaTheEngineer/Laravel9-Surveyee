@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminPanel\AdminSurveyController;
+use App\Http\Controllers\AdminPanel\CategoryController;
+use App\Http\Controllers\AdminPanel\HomeController as AdminPanelHomeController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,3 +43,33 @@ Route::post('/save',[HomeController::class,'save'])->name('save');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::prefix('admin')->name('admin.')->group(function(){
+    // ************************ ADMIN PANEL ROUTES ************************
+    Route::get('/',[AdminPanelHomeController::class,'index'])->name('index');
+
+    // ************************ ADMIN CATEGORY ROUTES ************************
+    Route::prefix('/category')->name('category.')->controller(CategoryController::class)->group(function(){
+        Route::get('/','index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::post('/store','store')->name('store');
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/destroy/{id}','destroy')->name('destroy');
+        Route::get('/show/{id}','show')->name('show');
+    });
+
+    Route::prefix('/survey')->name('survey.')->controller(AdminSurveyController::class)->group(function(){
+        // ************************ ADMIN SURVEY ROUTES ************************
+        Route::get('/','index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::post('/store','store')->name('store');
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::post('/update/{id}','update')->name('update');
+        Route::get('/destroy/{id}','destroy')->name('destroy');
+        Route::get('/show/{id}','show')->name('show');
+    });
+});
+
+?>
