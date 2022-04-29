@@ -88,7 +88,9 @@
                         <tbody>
                             <tr>
                                 <th class="col-xl-2">Category</th>
-                                <td class="col-xl-10">{{$data->category_id}}</td>
+                                <td class="col-xl-10">
+                                    {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($data->category, $data->category->title)}}
+                                </td>
                             </tr>
                             <tr>
                                 <th class="col-xl-2">Title</th>

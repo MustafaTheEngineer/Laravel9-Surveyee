@@ -105,7 +105,7 @@
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
-                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($item, $item->title)}}</td>
+                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($item->category, $item->category->title)}}</td>
                                 <td>{{$item->title}}</td>
                                 <td>{{$item->complete_number}}</td>
                                 <td style="max-width: 155px; overflow: hidden;">
