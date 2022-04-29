@@ -31,7 +31,7 @@
     <link href="{{asset('adminAssets')}}/css/theme.css" rel="stylesheet" media="all">
 @endsection
 
-@section('title','Survey List')
+@section('title','Category List')
 
 @section('content')
     <!-- PAGE CONTENT-->
@@ -51,7 +51,7 @@
                                     <li class="list-inline-item seprate">
                                         <span>/</span>
                                     </li>
-                                    <li class="list-inline-item">Survey</li>
+                                    <li class="list-inline-item">Category</li>
                                 </ul>
                             </div>
                             <form class="au-form-icon--sm" action="" method="post">
@@ -72,9 +72,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 d-flex">
-                        <h1 class="title-4">Survey List
+                        <h1 class="title-4">Category List
                         </h1>
-                        <a href="{{route('admin.survey.create')}}" class="btn btn-secondary ml-5">Add Survey</a>
+                        <a href="{{route('admin.category.create')}}" class="btn btn-secondary ml-5">Add Category</a>
                     </div>
                 </div>
             </div>
@@ -91,11 +91,9 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>CATEGORY</th>
+                                <th>PARENT ID</th>
                                 <th>TITLE</th>
-                                <th>NUMBER OF ATTENDANCES</th>
                                 <th>IMAGE</th>
-                                <th>IMAGE GALLERY</th>
                                 <th>STATUS</th>
                                 <th>EDIT</th>
                                 <th>DELETE</th>
@@ -106,27 +104,21 @@
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
-                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($item->category, $item->category->title)}}</td>
+                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($item, $item->title)}}</td>
                                 <td>{{$item->title}}</td>
-                                <td>{{$item->complete_number}}</td>
                                 <td style="max-width: 155px; overflow: hidden;">
                                     @if ($item->image)
                                         <img src="{{Storage::url($item->image)}}" style="max-width: 100px;" alt="{{$item->image}}">
                                     @endif
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <i class="fas fa-picture-o" style="font-size: 40px;"></i>
-                                    </a>
                                 </td>
                                 @if ($item->status == 'True')
                                     <td class="process">{{$item->status}}</td>
                                 @else
                                     <td class="denied">{{$item->status}}</td>
                                 @endif
-                                <td><a href="{{route('admin.survey.edit',['id'=>$item->id])}}" class="btn btn-warning">Edit</a></td>
-                                <td><a href="{{route('admin.survey.destroy',['id'=>$item->id])}}" class="btn btn-danger" id="delete">Delete</a></td>
-                                <td><a href="{{route('admin.survey.show',['id'=>$item->id])}}" class="btn btn-primary">Show</a></td>
+                                <td><a href="{{route('admin.category.edit',['id'=>$item->id])}}" class="btn btn-warning">Edit</a></td>
+                                <td><a href="{{route('admin.category.destroy',['id'=>$item->id])}}" class="btn btn-danger" id="delete">Delete</a></td>
+                                <td><a href="{{route('admin.category.show',['id'=>$item->id])}}" class="btn btn-primary">Show</a></td>
                             </tr>
                             @endforeach
 
@@ -144,12 +136,6 @@
 
 @section('js')
     <!-- Jquery JS-->
-    <script>
-        var del = document.getElementById('delete');
-        del.addEventListener('click',function(e){
-            e.preventDefault();
-        });
-    </script>
     <script src="{{asset('adminAssets')}}/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="{{asset('adminAssets')}}/vendor/bootstrap-4.1/popper.min.js"></script>

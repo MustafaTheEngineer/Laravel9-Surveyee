@@ -25,17 +25,16 @@
     <link href="{{asset('adminAssets')}}/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="{{asset('adminAssets')}}/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="{{asset('adminAssets')}}/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
 
     <!-- Main CSS-->
     <link href="{{asset('adminAssets')}}/css/theme.css" rel="stylesheet" media="all">
 @endsection
 
-@section('title','Survey List')
+@section('title','Add Category')
 
 @section('content')
     <!-- PAGE CONTENT-->
-    <div class="page-content--bgf7">
+    <div class="page-content--bgf7 mb-5">
         <!-- BREADCRUMB-->
         <section class="au-breadcrumb2">
             <div class="container">
@@ -46,12 +45,12 @@
                                 <span class="au-breadcrumb-span">You are here:</span>
                                 <ul class="list-unstyled list-inline au-breadcrumb__list">
                                     <li class="list-inline-item active">
-                                        <a href="#">Admin</a>
+                                        <a href="#">Home</a>
                                     </li>
                                     <li class="list-inline-item seprate">
                                         <span>/</span>
                                     </li>
-                                    <li class="list-inline-item">Survey</li>
+                                    <li class="list-inline-item">Dashboard</li>
                                 </ul>
                             </div>
                             <form class="au-form-icon--sm" action="" method="post">
@@ -71,85 +70,104 @@
         <section class="welcome p-t-10">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 d-flex">
-                        <h1 class="title-4">Survey List
+                    <div class="col-md-12">
+                        <h1 class="title-4">Add Category
                         </h1>
-                        <a href="{{route('admin.survey.create')}}" class="btn btn-secondary ml-5">Add Survey</a>
+                        <hr class="line-seprate">
                     </div>
                 </div>
             </div>
         </section>
         <!-- END WELCOME-->
 
-        <!--START TABLE -->
-        <div class="container">
-            <div class="row m-t-30">
-            <div class="col-md-12">
-                <!-- DATA TABLE-->
-                <div class="table-responsive m-b-40">
-                    <table class="table table-borderless table-data3">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>CATEGORY</th>
-                                <th>TITLE</th>
-                                <th>NUMBER OF ATTENDANCES</th>
-                                <th>IMAGE</th>
-                                <th>IMAGE GALLERY</th>
-                                <th>STATUS</th>
-                                <th>EDIT</th>
-                                <th>DELETE</th>
-                                <th>SHOW</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $item)
-                            <tr>
-                                <td>{{$item->id}}</td>
-                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($item->category, $item->category->title)}}</td>
-                                <td>{{$item->title}}</td>
-                                <td>{{$item->complete_number}}</td>
-                                <td style="max-width: 155px; overflow: hidden;">
-                                    @if ($item->image)
-                                        <img src="{{Storage::url($item->image)}}" style="max-width: 100px;" alt="{{$item->image}}">
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <i class="fas fa-picture-o" style="font-size: 40px;"></i>
-                                    </a>
-                                </td>
-                                @if ($item->status == 'True')
-                                    <td class="process">{{$item->status}}</td>
-                                @else
-                                    <td class="denied">{{$item->status}}</td>
-                                @endif
-                                <td><a href="{{route('admin.survey.edit',['id'=>$item->id])}}" class="btn btn-warning">Edit</a></td>
-                                <td><a href="{{route('admin.survey.destroy',['id'=>$item->id])}}" class="btn btn-danger" id="delete">Delete</a></td>
-                                <td><a href="{{route('admin.survey.show',['id'=>$item->id])}}" class="btn btn-primary">Show</a></td>
-                            </tr>
-                            @endforeach
-
-                            
-                        </tbody>
-                    </table>
+        <!-- START FORM -->
+        <div class="container-fluid">
+            <div class="card mx-5">
+                <div class="card-header">
+                    <strong>Category Elements</strong>
                 </div>
-                <!-- END DATA TABLE-->
+                <form action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                @csrf
+                <div class="card-body card-block">
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="">Parent Category</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select class="form-control select2" name="parent_id" id="">
+                                    <option value="0" selected>Main Category</option>
+                                    @foreach ($data as $rs)
+                                        <option value="{{$rs->id}}">
+                                            {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs, $rs->title)}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="text-input" class=" form-control-label">Title</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="text-input" name="title" placeholder="Text" class="form-control">
+                                <small class="form-text text-muted">Enter the title of category</small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="text-input" class=" form-control-label">Keywords</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="text-input" name="keywords" placeholder="Keywords" class="form-control">
+                                <small class="form-text text-muted">Keywords for explanation</small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="text-input" class=" form-control-label">Description</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="text-input" name="description" placeholder="Description" class="form-control">
+                                <small class="form-text text-muted">Description of category</small>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="file-input" class=" form-control-label">File input</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="file" id="file-input" name="image" class="form-control-file">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="select" class=" form-control-label">Status</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="status" id="select" class="form-control">
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>
+                            </div>
+                        </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                    <button type="reset" class="btn btn-danger btn-sm">
+                        <i class="fa fa-ban"></i> Reset
+                    </button>
+                </div>
+            </form>
             </div>
         </div>
-        </div>
-        <!--END TABLE -->
+        <!-- END FORM -->
     </div>
 @endsection
 
 @section('js')
     <!-- Jquery JS-->
-    <script>
-        var del = document.getElementById('delete');
-        del.addEventListener('click',function(e){
-            e.preventDefault();
-        });
-    </script>
     <script src="{{asset('adminAssets')}}/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="{{asset('adminAssets')}}/vendor/bootstrap-4.1/popper.min.js"></script>

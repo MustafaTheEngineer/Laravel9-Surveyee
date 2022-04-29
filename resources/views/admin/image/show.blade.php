@@ -25,17 +25,16 @@
     <link href="{{asset('adminAssets')}}/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="{{asset('adminAssets')}}/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="{{asset('adminAssets')}}/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
 
     <!-- Main CSS-->
     <link href="{{asset('adminAssets')}}/css/theme.css" rel="stylesheet" media="all">
 @endsection
 
-@section('title','Survey List')
+@section('title','Add Category')
 
 @section('content')
     <!-- PAGE CONTENT-->
-    <div class="page-content--bgf7">
+    <div class="page-content--bgf7 mb-5">
         <!-- BREADCRUMB-->
         <section class="au-breadcrumb2">
             <div class="container">
@@ -46,12 +45,12 @@
                                 <span class="au-breadcrumb-span">You are here:</span>
                                 <ul class="list-unstyled list-inline au-breadcrumb__list">
                                     <li class="list-inline-item active">
-                                        <a href="#">Admin</a>
+                                        <a href="#">Home</a>
                                     </li>
                                     <li class="list-inline-item seprate">
                                         <span>/</span>
                                     </li>
-                                    <li class="list-inline-item">Survey</li>
+                                    <li class="list-inline-item">Show</li>
                                 </ul>
                             </div>
                             <form class="au-form-icon--sm" action="" method="post">
@@ -71,85 +70,64 @@
         <section class="welcome p-t-10">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 d-flex">
-                        <h1 class="title-4">Survey List
+                    <div class="col-md-12">
+                        <h1 class="title-4">Show: {{$data->title}}
                         </h1>
-                        <a href="{{route('admin.survey.create')}}" class="btn btn-secondary ml-5">Add Survey</a>
                     </div>
                 </div>
             </div>
         </section>
         <!-- END WELCOME-->
 
-        <!--START TABLE -->
-        <div class="container">
-            <div class="row m-t-30">
-            <div class="col-md-12">
-                <!-- DATA TABLE-->
-                <div class="table-responsive m-b-40">
-                    <table class="table table-borderless table-data3">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>CATEGORY</th>
-                                <th>TITLE</th>
-                                <th>NUMBER OF ATTENDANCES</th>
-                                <th>IMAGE</th>
-                                <th>IMAGE GALLERY</th>
-                                <th>STATUS</th>
-                                <th>EDIT</th>
-                                <th>DELETE</th>
-                                <th>SHOW</th>
-                            </tr>
-                        </thead>
+        <!-- START FORM -->
+        <div class="container my-5">
+            <!-- TOP CAMPAIGN-->
+            <div class="">
+                <div class="table-responsive">
+                    <table class="table table-striped">
                         <tbody>
-                            @foreach ($data as $item)
                             <tr>
-                                <td>{{$item->id}}</td>
-                                <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($item->category, $item->category->title)}}</td>
-                                <td>{{$item->title}}</td>
-                                <td>{{$item->complete_number}}</td>
-                                <td style="max-width: 155px; overflow: hidden;">
-                                    @if ($item->image)
-                                        <img src="{{Storage::url($item->image)}}" style="max-width: 100px;" alt="{{$item->image}}">
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <i class="fas fa-picture-o" style="font-size: 40px;"></i>
-                                    </a>
-                                </td>
-                                @if ($item->status == 'True')
-                                    <td class="process">{{$item->status}}</td>
-                                @else
-                                    <td class="denied">{{$item->status}}</td>
-                                @endif
-                                <td><a href="{{route('admin.survey.edit',['id'=>$item->id])}}" class="btn btn-warning">Edit</a></td>
-                                <td><a href="{{route('admin.survey.destroy',['id'=>$item->id])}}" class="btn btn-danger" id="delete">Delete</a></td>
-                                <td><a href="{{route('admin.survey.show',['id'=>$item->id])}}" class="btn btn-primary">Show</a></td>
+                                <th class="col-xl-2">Title</th>
+                                <td class="col-xl-10">{{$data->title}}</td>
                             </tr>
-                            @endforeach
-
-                            
+                            <tr>
+                                <th class="col-xl-2">Keywords</th>
+                                <td class="col-xl-10">{{$data->keywords}}</td>
+                            </tr>
+                            <tr>
+                                <th class="col-xl-2">Description</th>
+                                <td class="col-xl-10">{{$data->description}}</td>
+                            </tr>
+                            <tr>
+                                <th class="col-xl-2">Image</th>
+                                <td class="col-xl-10">{{$data->image}}</td>
+                            </tr>
+                            <tr>
+                                <th class="col-xl-2">Status</th>
+                                <td class="col-xl-10">{{$data->status}}</td>
+                            </tr>
+                            <tr>
+                                <th class="col-xl-2">Created at</th>
+                                <td class="col-xl-10">{{$data->created_at}}</td>
+                            </tr>
+                            <tr>
+                                <th class="col-xl-2">Updated at</th>
+                                <td class="col-xl-10">{{$data->updated_at}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-                <!-- END DATA TABLE-->
             </div>
+            <!--  END TOP CAMPAIGN-->
+            <a href="/admin/category/edit/{{$data->id}}" class="btn btn-warning my-3">Edit</a>
+            <a href="/admin/category/destroy/{{$data->id}}" class="btn btn-danger my-3">Delete</a>
         </div>
-        </div>
-        <!--END TABLE -->
+        <!-- END FORM -->
     </div>
 @endsection
 
 @section('js')
     <!-- Jquery JS-->
-    <script>
-        var del = document.getElementById('delete');
-        del.addEventListener('click',function(e){
-            e.preventDefault();
-        });
-    </script>
     <script src="{{asset('adminAssets')}}/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="{{asset('adminAssets')}}/vendor/bootstrap-4.1/popper.min.js"></script>
