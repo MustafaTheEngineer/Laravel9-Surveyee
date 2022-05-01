@@ -115,7 +115,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="">
+                                    <a href="{{route('admin.image.index',['pid' => $item->id])}}" onclick="return !window.open(this.href, '', 'top=50 left=100 width=1100, height=700')">
                                         <i class="fas fa-picture-o" style="font-size: 40px;"></i>
                                     </a>
                                 </td>
@@ -129,8 +129,6 @@
                                 <td><a href="{{route('admin.survey.show',['id'=>$item->id])}}" class="btn btn-primary">Show</a></td>
                             </tr>
                             @endforeach
-
-                            
                         </tbody>
                     </table>
                 </div>

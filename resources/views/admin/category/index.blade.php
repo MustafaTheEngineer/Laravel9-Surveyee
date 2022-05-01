@@ -136,6 +136,12 @@
 
 @section('js')
     <!-- Jquery JS-->
+    <script>
+        var del = document.getElementById('delete');
+        del.addEventListener('click',function(e){
+            e.preventDefault();
+        });
+    </script>
     <script src="{{asset('adminAssets')}}/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="{{asset('adminAssets')}}/vendor/bootstrap-4.1/popper.min.js"></script>
