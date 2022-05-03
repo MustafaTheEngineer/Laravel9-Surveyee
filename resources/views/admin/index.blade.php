@@ -29,6 +29,8 @@
 
     <!-- Main CSS-->
     <link href="{{asset('adminAssets')}}/css/theme.css" rel="stylesheet" media="all">
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 @endsection
 
 @section('title','Surveyee Admin')

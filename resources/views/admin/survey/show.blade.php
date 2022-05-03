@@ -110,7 +110,7 @@
                             </tr>
                             <tr>
                                 <th class="col-xl-2">Detail</th>
-                                <td class="col-xl-10">{{$data->detail}}</td>
+                                <td class="col-xl-10">{!! $data->detail !!}</td>
                             </tr>
                             <tr>
                                 <th class="col-xl-2">Status</th>

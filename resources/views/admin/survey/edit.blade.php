@@ -28,6 +28,8 @@
 
     <!-- Main CSS-->
     <link href="{{asset('adminAssets')}}/css/theme.css" rel="stylesheet" media="all">
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 @endsection
 
 @section('title','Edit Survey')
@@ -144,7 +146,7 @@
                                 <label for="text-input" class=" form-control-label">Detail Info</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <textarea name="detail" rows="5" id="" class="border p-2" style="width: 100%;">{{$data->detail}}</textarea>
+                                <textarea name="detail" rows="5" id="detail" class="border p-2" style="width: 100%;">{{$data->detail}}</textarea>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -199,4 +201,15 @@
 
     <!-- Main JS-->
     <script src="{{asset('adminAssets')}}/js/main.js"></script>
+
+    <script>
+        ClassicEditor
+                .create( document.querySelector( '#detail' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+</script>
 @endsection
