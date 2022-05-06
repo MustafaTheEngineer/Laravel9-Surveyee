@@ -34,6 +34,11 @@
     .carousel img{
         object-fit: cover;
     }
+
+    .carousel-caption{
+        top: 500px;
+        padding: 0;
+    }
 </style>
 <!-- Favicon  -->
 <link rel="icon" href="{{asset('asset')}}/images/favicon.png">
@@ -97,16 +102,16 @@
                 <div class="carousel-item active">
                     <img src="{{Storage::url($item->image)}}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
+                        <h5>{{$item->title}}</h5>
+                        <p>{{$item->description}}</p>
                     </div>
                 </div>
                 @else
                 <div class="carousel-item">
                     <img src="{{Storage::url($item->image)}}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
+                        <h5>{{$item->title}}</h5>
+                        <p>{{$item->description}}</p>
                     </div>
                 </div>
                 @endif
@@ -353,7 +358,6 @@
         </div> <!-- end of row -->
         <div class="row">
             <div class="col-lg-12">
-
                 <!-- Filter -->
                 <div class="button-group filters-button-group">
                     <button class="button is-checked" data-filter="*">ALL</button>
@@ -362,69 +366,16 @@
                     <button class="button" data-filter=".marketing">MARKETING</button>
                 </div> <!-- end of button group -->
                 <div class="grid">
-                    <div class="element-item development">
-                        <a href="article.html">
-                            <img class="img-fluid" src="{{asset('assets')}}/images/project-1.jpg" alt="alternative">
-                            <p><strong>Online banking</strong> - pellentesque tincidunt leo eu laoreedt integer quis
+                    @foreach ($surveys as $key => $item)
+                        <div class="element-item development" style="max-width: 300px;">
+                            <a href="article.html">
+                                <img class="img-fluid" src="{{Storage::url($item->image)}}" alt="alternative" style="width:100%; height:150px; display:block; object-fit:cover;">
+                                <p><strong>{{$item->title}}</strong> - pellentesque tincidunt leo eu laoreedt integer quis
                                 vanos compren</p>
-                        </a>
-                    </div>
-                    <div class="element-item development">
-                        <a href="article.html">
-                            <img class="img-fluid" src="{{asset('assets')}}/images/project-2.jpg" alt="alternative">
-                            <p><strong>Loans company</strong> - odio semper, interdum orci molestie, mattis lectus
-                                pellentesq aliqu</p>
-                        </a>
-                    </div>
-                    <div class="element-item development">
-                        <a href="article.html">
-                            <img class="img-fluid" src="{{asset('assets')}}/images/project-3.jpg" alt="alternative">
-                            <p><strong>Refinance firm</strong> - arcu a neque congue finibus doneci malesuada et purus
-                                melan bris</p>
-                        </a>
-                    </div>
-                    <div class="element-item design development">
-                        <a href="article.html">
-                            <img class="img-fluid" src="{{asset('assets')}}/images/project-4.jpg" alt="alternative">
-                            <p><strong>Financial products</strong> - id aliquam ut malesuada eros utr varius blandit
-                                aliquam tinci bist</p>
-                        </a>
-                    </div>
-                    <div class="element-item design development">
-                        <a href="article.html">
-                            <img class="img-fluid" src="{{asset('assets')}}/images/project-5.jpg" alt="alternative">
-                            <p><strong>Credit cards</strong> - magna a feugiat cras a semper tellus in rhoncus vehicula
-                                tellus rugo</p>
-                        </a>
-                    </div>
-                    <div class="element-item design marketing">
-                        <a href="article.html">
-                            <img class="img-fluid" src="{{asset('assets')}}/images/project-6.jpg" alt="alternative">
-                            <p><strong>Software robots</strong> - vel sodales dolor donec a est sapien integer pharetr
-                                bilom conva</p>
-                        </a>
-                    </div>
-                    <div class="element-item design marketing">
-                        <a href="article.html">
-                            <img class="img-fluid" src="{{asset('assets')}}/images/project-7.jpg" alt="alternative">
-                            <p><strong>Company control</strong> - ut quam aliquam elemo de vestibulum fringilla
-                                porttitor vanic tres</p>
-                        </a>
-                    </div>
-                    <div class="element-item design marketing">
-                        <a href="article.html">
-                            <img class="img-fluid" src="{{asset('assets')}}/images/project-8.jpg" alt="alternative">
-                            <p><strong>Audit reports</strong> - sed tempor, metus vel pharetra finibus, est ante
-                                hendrerit augue</p>
-                        </a>
-                    </div>
-                    <div class="element-item design marketing">
-                        <a href="article.html">
-                            <img class="img-fluid" src="{{asset('assets')}}/images/project-9.jpg" alt="alternative">
-                            <p><strong>Big business</strong> - aliquam semper molestie nisi, at porttitor lacus suscipit
-                                in mole richter</p>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    @endforeach
+                    
                 </div> <!-- end of grid -->
                 <!-- end of filter -->
 

@@ -10,8 +10,10 @@ class HomeController extends Controller
     // 
     public function index(){
         $sliderdata = survey::limit(3)->get();
+        $surveys = survey::limit(5)->get();
         return view("home.index",[
-            'sliderdata' => $sliderdata
+            'sliderdata' => $sliderdata,
+            'surveys' => $surveys
         ]);
     }
 
