@@ -48,11 +48,11 @@
 
 @section('js')
 <!-- Scripts -->
-<script src="{{asset('assets')}}/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
-<script src="{{asset('assets')}}/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
-<script src="{{asset('assets')}}/js/purecounter.min.js"></script> <!-- Purecounter counter for statistics numbers -->
-<script src="{{asset('assets')}}/js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
-<script src="{{asset('assets')}}/js/scripts.js"></script> <!-- Custom scripts -->
+    <script src="{{asset('assets')}}/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="{{asset('assets')}}/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="{{asset('assets')}}/js/purecounter.min.js"></script> <!-- Purecounter counter for statistics numbers -->
+    <script src="{{asset('assets')}}/js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
+    <script src="{{asset('assets')}}/js/scripts.js"></script> <!-- Custom scripts -->
 @endsection
 
 @section('content')

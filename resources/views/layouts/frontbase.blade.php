@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>App Name - @yield('title')</title>
+    <title>@yield('title')</title>
     @yield('head')
 </head>
 

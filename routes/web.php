@@ -41,6 +41,8 @@ Route::get('/parameter/{id}/{number}',[HomeController::class,'parameter'])->name
 // Route with post
 Route::post('/save',[HomeController::class,'save'])->name('save');
 
+Route::get('/survey/{id}',[HomeController::class,'survey'])->name('survey');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

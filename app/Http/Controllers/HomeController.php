@@ -21,6 +21,13 @@ class HomeController extends Controller
         return view("home.test");
     }
 
+    public function survey($id){
+        $data = survey::find($id);
+        return view("home.survey",[
+            'data' => $data
+        ]);
+    }
+
     public function parameter($id,$number){
         echo "Parameter 1: ".$id;
         echo "<br> Parameter 2: ".$number;
