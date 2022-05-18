@@ -12,4 +12,14 @@ class Category extends Model
     public function surveys(){
         return $this->hasMany(survey::class);
     }
+
+    # One to many inverse
+    public function parent(){
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    # One to many
+    public function children(){
+        return $this->hasMany(Category::class , 'parent_id');
+    }
 }

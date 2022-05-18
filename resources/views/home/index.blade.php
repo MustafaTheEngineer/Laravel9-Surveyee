@@ -26,10 +26,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
 
+
 <link href="{{asset('assets')}}/css/bootstrap.min.css" rel="stylesheet">
 <link href="{{asset('assets')}}/css/fontawesome-all.min.css" rel="stylesheet">
 <link href="{{asset('assets')}}/css/swiper.css" rel="stylesheet">
 <link href="{{asset('assets')}}/css/styles.css" rel="stylesheet">
+
 <style>
     .carousel img{
         object-fit: cover;
@@ -38,6 +40,31 @@
     .carousel-caption{
         top: 500px;
         padding: 0;
+    }
+
+    .my-dropdown-menu{
+        list-style: none;
+        padding-left: 15px;
+        margin: 5px 0;
+        display: none;
+    }
+
+    .dropdown-caret-btn{
+        color: #FF5574;
+        background-color: #ffffff;
+        border: 1px solid #FF5574;
+        border-radius: 5px;
+        padding: 5px 10px;
+    }
+
+    .dropdown-caret-btn:hover{
+        color: #ffffff;
+        background-color: #FF5574;
+        transition: all .2s;
+    }
+
+    #categorytree > div{
+        margin: 0 20px;
     }
 </style>
 <!-- Favicon  -->
@@ -48,11 +75,25 @@
 
 @section('js')
 <!-- Scripts -->
-    <script src="{{asset('assets')}}/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
     <script src="{{asset('assets')}}/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
     <script src="{{asset('assets')}}/js/purecounter.min.js"></script> <!-- Purecounter counter for statistics numbers -->
     <script src="{{asset('assets')}}/js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
     <script src="{{asset('assets')}}/js/scripts.js"></script> <!-- Custom scripts -->
+    <script>
+        const caret_buttons = document.querySelectorAll('.dropdown-caret-btn');
+        caret_buttons.forEach(element => {
+            element.addEventListener('click',function(){
+                const dropdown = this.nextElementSibling;
+                if (dropdown.style.display == "block") {
+                    dropdown.style.display = "none";
+                } else {
+                    dropdown.style.display = "block";
+                }
+            });
+        });
+        
+        console.log(caret_buttons);
+    </script>
 @endsection
 
 @section('content')
@@ -348,43 +389,23 @@
 </div> <!-- end of counter -->
 <!-- end of details 2 -->
 
-<!-- Projects -->
-<div id="projects" class="filter bg-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="h2-heading">Projects that we're proud of</h2>
-            </div> <!-- end of col -->
-        </div> <!-- end of row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Filter -->
-                <div class="button-group filters-button-group">
-                    <button class="button is-checked" data-filter="*">ALL</button>
-                    <button class="button" data-filter=".design">DESIGN</button>
-                    <button class="button" data-filter=".development">DEVELOPMENT</button>
-                    <button class="button" data-filter=".marketing">MARKETING</button>
-                </div> <!-- end of button group -->
-                <div class="grid">
-                    @foreach ($surveys as $key => $item)
-                        <div class="element-item development" style="max-width: 300px;">
-                            <a href="article.html">
-                                <img class="img-fluid" src="{{Storage::url($item->image)}}" alt="alternative" style="width:100%; height:150px; display:block; object-fit:cover;">
-                                <p><strong>{{$item->title}}</strong> - pellentesque tincidunt leo eu laoreedt integer quis
-                                vanos compren</p>
-                            </a>
-                        </div>
-                    @endforeach
-                    
-                </div> <!-- end of grid -->
-                <!-- end of filter -->
-
-            </div> <!-- end of col -->
-        </div> <!-- end of row -->
-    </div> <!-- end of container -->
-</div> <!-- end of filter -->
-<!-- end of projects -->
-
+@php
+    $mainCategories = \App\Http\Controllers\HomeController::mainCategoryList();
+@endphp
+<div class="container d-flex justify-content-center" id="categorytree">
+    @foreach ($mainCategories as $item)
+        <div class="my-dropdown">
+            <button class="dropdown-caret-btn"> {{$item->title}}  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg></button>
+            <ul class="my-dropdown-menu">
+                @if (count($item->children))
+                    @include('home.categorytree',['children' => $item->children])
+                @endif
+            </ul>
+        </div>
+    @endforeach
+</div>
 
 <!-- Testimonials -->
 <div class="slider-1">

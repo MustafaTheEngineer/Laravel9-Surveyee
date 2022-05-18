@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\survey;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,10 @@ class HomeController extends Controller
             'sliderdata' => $sliderdata,
             'surveys' => $surveys
         ]);
+    }
+
+    public static function mainCategoryList(){
+        return Category::where('parent_id', '=' , 0)->with('children')->get();
     }
 
     public function test(){
