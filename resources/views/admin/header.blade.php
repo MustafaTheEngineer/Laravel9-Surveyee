@@ -3,7 +3,7 @@
     <div class="section__content section__content--p35">
         <div class="header3-wrap">
             <div class="header__logo">
-                <a href="#">
+                <a href="{{route('admin.index')}}">
                     <span class="text-white h1" style="font-family: 'Acme', sans-serif !important;">Surveyee</span>
                 </a>
             </div>
@@ -134,7 +134,7 @@
                                     <i class="zmdi zmdi-account"></i>Account</a>
                             </div>
                             <div class="account-dropdown__item">
-                                <a href="#">
+                                <a href="{{route('admin.setting')}}">
                                     <i class="zmdi zmdi-settings"></i>Setting</a>
                             </div>
                             <div class="account-dropdown__item">
@@ -190,7 +190,7 @@
                                         <i class="zmdi zmdi-account"></i>Account</a>
                                 </div>
                                 <div class="account-dropdown__item">
-                                    <a href="#">
+                                    <a href="{{route('admin.setting')}}">
                                         <i class="zmdi zmdi-settings"></i>Setting</a>
                                 </div>
                                 <div class="account-dropdown__item">
@@ -214,7 +214,7 @@
     <div class="header-mobile__bar">
         <div class="container-fluid">
             <div class="header-mobile-inner">
-                <a class="logo" href="index.html">
+                <a class="logo" href="{{route('admin.index')}}">
                     <span class="text-white h1" style="font-family: 'Acme', sans-serif !important;">Surveyee</span>
                 </a>
                 <button class="hamburger hamburger--slider" type="button">
@@ -334,7 +334,7 @@
             </div>
         </div>
         <div class="header-button-item js-item-menu">
-            <i class="zmdi zmdi-settings"></i>
+                <i class="zmdi zmdi-settings"></i>
             <div class="setting-dropdown js-dropdown">
                 <div class="account-dropdown__body">
                     <div class="account-dropdown__item">
@@ -342,7 +342,7 @@
                             <i class="zmdi zmdi-account"></i>Account</a>
                     </div>
                     <div class="account-dropdown__item">
-                        <a href="#">
+                        <a href="{{route('admin.setting')}}">
                             <i class="zmdi zmdi-settings"></i>Setting</a>
                     </div>
                     <div class="account-dropdown__item">
@@ -398,7 +398,7 @@
                                 <i class="zmdi zmdi-account"></i>Account</a>
                         </div>
                         <div class="account-dropdown__item">
-                            <a href="#">
+                            <a href="{{route('admin.setting')}}">
                                 <i class="zmdi zmdi-settings"></i>Setting</a>
                         </div>
                         <div class="account-dropdown__item">

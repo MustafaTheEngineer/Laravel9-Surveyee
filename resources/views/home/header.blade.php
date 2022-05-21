@@ -3,7 +3,7 @@
     <div class="container">
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-text" href="index.html" style="font-family: 'Acme', sans-serif; font-size: 2rem">Surveyee</a>
+        <a class="navbar-brand logo-text" href="{{route('home')}}" style="font-family: 'Acme', sans-serif; font-size: 2rem">Surveyee</a>
 
         <!-- Text Logo - Use this if you don't have a graphic logo -->
         <!-- <a class="navbar-brand logo-text" href="index.html">Zinc</a> -->

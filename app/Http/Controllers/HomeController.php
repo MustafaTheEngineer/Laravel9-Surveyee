@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Setting;
 use App\Models\survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -12,14 +14,25 @@ class HomeController extends Controller
     public function index(){
         $sliderdata = survey::limit(3)->get();
         $surveys = survey::limit(5)->get();
+        $setting = Setting::first();
         return view("home.index",[
             'sliderdata' => $sliderdata,
-            'surveys' => $surveys
+            'surveys' => $surveys,
+            'setting' => $setting
         ]);
     }
 
     public static function mainCategoryList(){
         return Category::where('parent_id', '=' , 0)->with('children')->get();
+    }
+
+    public function categorysurveys($id){
+        $category = Category::find($id);
+        $surveys = DB::table('surveys')->where('category_id',$id)->get();
+        return view('home.categorysurveys',[
+            'category' => $category,
+            'surveys' => $surveys
+        ]);
     }
 
     public function test(){

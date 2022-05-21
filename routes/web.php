@@ -48,12 +48,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-
+// ************************ ADMIN PANEL ROUTES ************************
 Route::prefix('admin')->name('admin.')->group(function(){
-    // ************************ ADMIN PANEL ROUTES ************************
     Route::get('/',[AdminPanelHomeController::class,'index'])->name('index');
-
-    // ************************ ADMIN CATEGORY ROUTES ************************
+// ************************ GENERAL ROUTES ************************
+    Route::get('/setting',[AdminPanelHomeController::class,'setting'])->name('setting');
+    Route::post('/setting',[AdminPanelHomeController::class,'settingUpdate'])->name('setting.update');
+    
+// ************************ ADMIN CATEGORY ROUTES ************************
     Route::prefix('/category')->name('category.')->controller(CategoryController::class)->group(function(){
         Route::get('/','index')->name('index');
         Route::get('/create','create')->name('create');
