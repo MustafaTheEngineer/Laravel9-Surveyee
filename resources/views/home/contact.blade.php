@@ -29,30 +29,31 @@
                 <div class="col-lg-10 offset-lg-1">
     
                     <!-- Contact Form -->
-                    <form>
+                    <form action="{{route('storemessage')}}" method="post">
+                        @csrf
+
+                        @include('home.messages')
+
                         <div class="form-group">
-                            <input type="text" class="form-control-input" placeholder="Name" required="">
+                            <input type="text" class="form-control-input" name="name" placeholder="Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control-input" placeholder="Email" required="">
+                            <input type="email" class="form-control-input" name="email" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <select class="form-control-select" required="">
-                                <option class="select-option" value="" disabled="" selected="">Contact type</option>
-                                <option class="select-option" value="Info">Info</option>
-                                <option class="select-option" value="Project">Project</option>
-                                <option class="select-option" value="Shop">Shop</option>
-                            </select>
+                            <input type="tel" class="form-control-input" name="phone" placeholder="Phone Number">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control-textarea" placeholder="Message" required=""></textarea>
+                            <input type="text" class="form-control-input" name="subject" placeholder="Subject" style="font-weight: 700;">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control-textarea" name="message" placeholder="Message"></textarea>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="form-control-submit-button">Send</button>
                         </div>
                     </form>
                     <!-- end of contact form -->
-    
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
