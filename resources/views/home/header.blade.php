@@ -29,17 +29,17 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown"
-                        aria-expanded="false">Drop</a>
+                        aria-expanded="false">Info</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                        <li><a class="dropdown-item" href="article.html">Article Details</a></li>
+                        <li><a class="dropdown-item" href="{{route('about')}}">About Us</a></li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href="terms.html">Terms Conditions</a></li>
+                        <li><a class="dropdown-item" href="{{route('contact')}}">Contact Us</a></li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href="privacy.html">Privacy Policy</a></li>
+                        <li><a class="dropdown-item" href="{{route('references')}}">References</a></li>
                     </ul>
                 </li>
                 <span class="nav-item ms-5">
