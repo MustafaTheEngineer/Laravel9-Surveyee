@@ -40,6 +40,9 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li><a class="dropdown-item" href="{{route('references')}}">References</a></li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li><a class="dropdown-item" href="{{route('faq')}}">FAQ</a></li>
                     </ul>
                 </li>
                 <span class="nav-item ms-5">

@@ -45,7 +45,7 @@
                             <span class="bot-line"></span>Comments</a>
                     </li>
                     <li>
-                        <a href="table.html">
+                        <a href="{{route('admin.faq.index')}}">
                             <i class="fas fa-question-circle"></i>
                             <span class="bot-line"></span>FAQ</a>
                     </li>
@@ -240,7 +240,7 @@
                         <span class="bot-line"></span>Comments</a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="{{route('admin.faq.index')}}">
                         <i class="fas fa-question-circle"></i>
                         <span class="bot-line"></span>FAQ</a>
                 </li>

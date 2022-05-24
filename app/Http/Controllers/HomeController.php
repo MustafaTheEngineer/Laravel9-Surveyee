@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Faq;
 use App\Models\Message;
 use App\Models\Setting;
 use App\Models\survey;
@@ -68,6 +69,16 @@ class HomeController extends Controller
         $data->save();
 
         return redirect()->route('contact')->with('info','Your message has been sent, Thank you.');
+    }
+
+    public function faq(){
+        $datalist = Faq::all();
+        $setting = Setting::first();
+
+        return view('home.faq',[
+            'datalist' => $datalist,
+            'setting' => $setting
+        ]);
     }
 
     public function test(){
