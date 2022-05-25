@@ -40,7 +40,7 @@
                             <span class="bot-line"></span>Categories</a>
                     </li>
                     <li>
-                        <a href="table.html">
+                        <a href="{{route('admin.comment.index')}}">
                             <i class="fas fa-comments"></i>
                             <span class="bot-line"></span>Comments</a>
                     </li>
@@ -235,7 +235,7 @@
                         <span class="bot-line"></span>Categories</a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="{{route('admin.comment.index')}}">
                         <i class="fas fa-comments"></i>
                         <span class="bot-line"></span>Comments</a>
                 </li>

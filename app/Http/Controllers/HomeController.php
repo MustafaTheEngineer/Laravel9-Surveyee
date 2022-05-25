@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Faq;
 use App\Models\Message;
 use App\Models\Setting;
 use App\Models\survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -68,7 +70,7 @@ class HomeController extends Controller
         $data->ip = $request->ip();
         $data->save();
 
-        return redirect()->route('contact')->with('info','Your message has been sent, Thank you.');
+        return redirect()->route('contact')->with('success','Your message has been sent, Thank you.');
     }
 
     public function faq(){
@@ -81,14 +83,30 @@ class HomeController extends Controller
         ]);
     }
 
+    public function storecomment(Request $request){
+        $data = new Comment();
+
+        $data->user_id = Auth::id();
+        $data->survey_id = $request->input('survey_id');
+        $data->subject = $request->input('subject');
+        $data->review = $request->input('review');
+        $data->rate = $request->input('rate');
+        $data->IP = $request->ip();
+        $data->save();
+
+        return redirect()->route('survey',['id' => $request->input('survey_id')])->with('success','Your comment has been sent, Thank you.');
+    }
+
     public function test(){
         return view("home.test");
     }
 
     public function survey($id){
         $data = survey::find($id);
+        $reviews = Comment::where('survey_id',$id)->where('status','True')->get(); 
         return view("home.survey",[
-            'data' => $data
+            'data' => $data,
+            'reviews' => $reviews
         ]);
     }
 
