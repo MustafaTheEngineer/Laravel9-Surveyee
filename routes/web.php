@@ -60,6 +60,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // LOGIN
 Route::view('/loginuser','home.login');
 Route::view('/registeruser','home.register');
+Route::get('/logoutuser',[HomeController::class,'logout'])->name('logoutuser');
 
 // ************************ ADMIN PANEL ROUTES ************************
 Route::prefix('admin')->name('admin.')->group(function(){

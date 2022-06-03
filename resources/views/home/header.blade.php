@@ -31,32 +31,49 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown"
                         aria-expanded="false">Info</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                        <li><a class="dropdown-item" href="{{route('about')}}">About Us</a></li>
+                        <li>
+                            <a class="dropdown-item" href="{{route('about')}}">About Us</a>
+                        </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href="{{route('contact')}}">Contact Us</a></li>
+                        <li>
+                            <a class="dropdown-item" href="{{route('contact')}}">Contact Us</a>
+                        </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href="{{route('references')}}">References</a></li>
+                        <li><a class="dropdown-item" href="{{route('references')}}">References</a>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li><a class="dropdown-item" href="{{route('faq')}}">FAQ</a></li>
+                        <li>
+                            <a class="dropdown-item" href="{{route('faq')}}">FAQ</a>
+                        </li>
                     </ul>
                 </li>
                 <span class="nav-item ms-5">
-                    <a class="nav-link" href="/loginuser">Log in</a>
+                    @guest
+                        <a class="nav-link" href="/loginuser">Log in</a>
+                    @endguest
                     @auth
-                        <strong>
-                            {{Auth::user()->name}}
-                        </strong>
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownUser" data-bs-toggle="dropdown"
+                                aria-expanded="false">{{Auth::user()->name}}</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+                                <li>
+                                    <a class="dropdown-item text-danger" href="/logoutuser">Log Out</a>
+                                </li>
+                            </ul>
+                        </div>
                     @endauth
                     
                 </span>
             </ul>
             <span class="nav-item">
-                <a class="btn-solid-sm" href="#contact">Sign up</a>
+                @guest
+                    <a class="btn-solid-sm" href="/registeruser">Sign up</a>
+                @endguest
+                
             </span>
         </div> <!-- end of navbar-collapse -->
     </div> <!-- end of container -->

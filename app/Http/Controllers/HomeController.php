@@ -124,4 +124,13 @@ class HomeController extends Controller
         echo "Save Function<br>";
         echo "First name: ".$_REQUEST["fname"];
     }
+
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }
