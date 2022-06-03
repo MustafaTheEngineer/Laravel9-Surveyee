@@ -6,9 +6,12 @@
 @endif
 
 @if ($message = Session::get('error'))
-    <div class="alert alert-danger alert-block d-flex justify-content-center">
-        <button type="button" class="close" data-dismiss="alert" style="border: 0; align-self:flex-start; background-color:inherit">x</button>
-        <strong style="align-self: center;">{{$message}}</strong>
+    <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+        <span class="badge badge-pill badge-danger">Success</span>
+            {{$message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
     </div>
 @endif
 

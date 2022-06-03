@@ -148,9 +148,9 @@
                     <div class="account-item account-item--style2 clearfix js-item-menu">
                         <div class="image">
                             <img src="{{asset('adminAssets')}}/images/icon/avatar-01.jpg" alt="John Doe" />
-                        </div>
-                        <div class="content">
-                            <a class="js-acc-btn" href="#">john doe</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" style="z-index: 100; position: absolute; top: 15px; margin-left: 10px;" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                              </svg>
                         </div>
                         <div class="account-dropdown js-dropdown">
                             <div class="info clearfix">
@@ -161,7 +161,9 @@
                                 </div>
                                 <div class="content">
                                     <h5 class="name">
-                                        <a href="#">john doe</a>
+                                        @auth
+                                            <a class="js-acc-btn" href="#"> {{ Auth::user()->name }} </a>
+                                        @endauth
                                     </h5>
                                     <span class="email">johndoe@example.com</span>
                                 </div>
@@ -181,7 +183,7 @@
                                 </div>
                             </div>
                             <div class="account-dropdown__footer">
-                                <a href="#">
+                                <a href="/logoutuser">
                                     <i class="zmdi zmdi-power"></i>Logout</a>
                             </div>
                         </div>
@@ -356,20 +358,23 @@
             <div class="account-item account-item--style2 clearfix js-item-menu">
                 <div class="image">
                     <img src="{{asset('adminAssets')}}/images/icon/avatar-01.jpg" alt="John Doe">
-                </div>
-                <div class="content">
-                    <a class="js-acc-btn" href="#">john doe</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" style="z-index: 100; position: absolute; top: 15px; margin-left: 10px;" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                      </svg>
                 </div>
                 <div class="account-dropdown js-dropdown">
                     <div class="info clearfix">
                         <div class="image">
                             <a href="#">
                                 <img src="{{asset('adminAssets')}}/images/icon/avatar-01.jpg" alt="John Doe">
+                                <i class="fa-chevron-down"></i>
                             </a>
                         </div>
                         <div class="content">
                             <h5 class="name">
-                                <a href="#">john doe</a>
+                                @auth
+                                    <a class="js-acc-btn" href="#"> {{ Auth::user()->name }} </a>
+                                @endauth
                             </h5>
                             <span class="email">johndoe@example.com</span>
                         </div>
@@ -389,7 +394,7 @@
                         </div>
                     </div>
                     <div class="account-dropdown__footer">
-                        <a href="#">
+                        <a href="/logoutuser">
                             <i class="zmdi zmdi-power"></i>Logout</a>
                     </div>
                 </div>

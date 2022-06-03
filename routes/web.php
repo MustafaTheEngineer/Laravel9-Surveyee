@@ -57,10 +57,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// LOGIN
+// ************************ LOGIN ************************
 Route::view('/loginuser','home.login');
 Route::view('/registeruser','home.register');
 Route::get('/logoutuser',[HomeController::class,'logout'])->name('logoutuser');
+Route::view('/loginadmin','admin.login');
+Route::post('/loginadmincheck',[HomeController::class,'loginadmincheck'])->name('loginadmincheck');
 
 // ************************ ADMIN PANEL ROUTES ************************
 Route::prefix('admin')->name('admin.')->group(function(){
