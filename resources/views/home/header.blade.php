@@ -46,7 +46,13 @@
                     </ul>
                 </li>
                 <span class="nav-item ms-5">
-                    <a class="nav-link" href="#contact">Sign in</a>
+                    <a class="nav-link" href="/loginuser">Log in</a>
+                    @auth
+                        <strong>
+                            {{Auth::user()->name}}
+                        </strong>
+                    @endauth
+                    
                 </span>
             </ul>
             <span class="nav-item">
