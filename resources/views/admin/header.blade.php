@@ -165,7 +165,9 @@
                                             <a class="js-acc-btn" href="#"> {{ Auth::user()->name }} </a>
                                         @endauth
                                     </h5>
-                                    <span class="email">johndoe@example.com</span>
+                                    @auth
+                                        <span class="email">{{ Auth::user()->email }}</span>
+                                    @endauth
                                 </div>
                             </div>
                             <div class="account-dropdown__body">
@@ -376,7 +378,9 @@
                                     <a class="js-acc-btn" href="#"> {{ Auth::user()->name }} </a>
                                 @endauth
                             </h5>
-                            <span class="email">johndoe@example.com</span>
+                            @auth
+                                <span class="email">{{ Auth::user()->email }}</span>
+                            @endauth
                         </div>
                     </div>
                     <div class="account-dropdown__body">

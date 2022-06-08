@@ -6,14 +6,14 @@
             <div class="login-wrap">
                 <div class="login-content">
                     <div class="login-logo">
-                        @if($errors->any())
+                        @foreach ($errors->all() as $error)
                             <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
-                                    {{$errors->first()}}
+                                {{$error}}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                        @endif
+                        @endforeach
                     </div>
                     <div class="login-form">
                         <form action="{{route('loginadmincheck')}}" method="post">

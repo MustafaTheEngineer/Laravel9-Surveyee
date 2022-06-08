@@ -14,11 +14,6 @@ use function PHPUnit\Framework\isNull;
 class HomeController extends Controller
 {
     public function index(){
-        $user = Auth::user();
-
-        if(!$user)
-            return view('admin.login');
-
         return view('admin.index');
     }
 

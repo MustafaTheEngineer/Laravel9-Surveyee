@@ -59,20 +59,20 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 // ************************ LOGIN ************************
-Route::view('/loginuser','home.login');
-Route::view('/registeruser','home.register');
+Route::view('/loginuser','home.login')->name('loginuser');
+Route::view('/registeruser','home.register')->name('registeruser');
 Route::get('/logoutuser',[HomeController::class,'logout'])->name('logoutuser');
-Route::view('/loginadmin','admin.login');
+Route::view('/loginadmin','admin.login')->name('loginadmin');
 Route::post('/loginadmincheck',[HomeController::class,'loginadmincheck'])->name('loginadmincheck');
 
 // ************************ ADMIN PANEL ROUTES ************************
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::middleware('admin')->prefix('admin')->name('admin.')->group(function(){
     Route::get('/',[AdminPanelHomeController::class,'index'])->name('index');
-// ************************ GENERAL ROUTES ************************
+    // ************************ GENERAL ROUTES ************************
     Route::get('/setting',[AdminPanelHomeController::class,'setting'])->name('setting');
     Route::post('/setting',[AdminPanelHomeController::class,'settingUpdate'])->name('setting.update');
     
-// ************************ ADMIN CATEGORY ROUTES ************************
+    // ************************ ADMIN CATEGORY ROUTES ************************
     Route::prefix('/category')->name('category.')->controller(CategoryController::class)->group(function(){
         Route::get('/','index')->name('index');
         Route::get('/create','create')->name('create');
@@ -83,8 +83,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/show/{id}','show')->name('show');
     });
 
+    // ************************ ADMIN SURVEY ROUTES ************************
     Route::prefix('/survey')->name('survey.')->controller(AdminSurveyController::class)->group(function(){
-        // ************************ ADMIN SURVEY ROUTES ************************
+        
         Route::get('/','index')->name('index');
         Route::get('/create','create')->name('create');
         Route::post('/store','store')->name('store');
