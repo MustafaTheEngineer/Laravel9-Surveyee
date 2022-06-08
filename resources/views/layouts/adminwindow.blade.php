@@ -36,6 +36,15 @@
             overflow: unset;
             padding-bottom: 50vh !important;
         }
+
+        .trash{
+            color: #DC3545;
+        }
+
+        .trash:hover{
+            color: #ffffff;
+            background-color: #DC3545;
+        }
     </style>
 </head>
 <body class="animsition">

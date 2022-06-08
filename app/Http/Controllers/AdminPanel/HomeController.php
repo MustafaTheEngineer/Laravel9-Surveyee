@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminPanel;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\Type\TypeName;
 
 use function PHPSTORM_META\type;
@@ -13,6 +14,11 @@ use function PHPUnit\Framework\isNull;
 class HomeController extends Controller
 {
     public function index(){
+        $user = Auth::user();
+
+        if(!$user)
+            return view('admin.login');
+
         return view('admin.index');
     }
 
