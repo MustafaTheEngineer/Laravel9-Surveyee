@@ -19,18 +19,12 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()){
-            return redirect(route('loginadmin'));
-        }else{
-            $path = $request->getPathInfo();
-            $userRoles = Auth::user()->roles->pluck('name');
-            If (!$userRoles->contains('admin') and $path == '/admin/user' or $path == '/admin/user/'){
-                return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission']);
-            }
-
-            return $next($request);
+        $path = $request->getPathInfo();
+        $userRoles = Auth::user()->roles->pluck('name');
+        If (!$userRoles->contains('admin') and $path == '/admin/user' or $path == '/admin/user/'){
+            return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission']);
         }
-       
-        
+
+        return $next($request);
     }
 }
