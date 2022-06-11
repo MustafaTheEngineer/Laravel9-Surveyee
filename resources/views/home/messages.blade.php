@@ -1,6 +1,6 @@
 @if ($message = Session::get('success'))
     <div class="alert alert-success alert-block d-flex justify-content-center">
-        <button type="button" class="close" data-dismiss="alert" style="border: 0; align-self:flex-start; background-color:inherit">x</button>
+        <button type="button" class="close" data-dismiss="alert" style="border: 0;margin-left:auto; margin-right: 20px;background-color: #D1E7DD !important;">x</button>
         <strong style="align-self: center;">{{$message}}</strong>
     </div>
 @endif

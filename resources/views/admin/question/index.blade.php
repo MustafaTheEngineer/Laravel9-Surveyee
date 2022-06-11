@@ -98,7 +98,7 @@
                                     <td class="denied">{{$item->status}}</td>
                                 @endif
                                 <td><a href="{{route('admin.survey.edit',['id'=>$item->id])}}" class="btn btn-warning">Edit</a></td>
-                                <td><a href="{{route('admin.survey.destroy',['id'=>$item->id])}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
+                                <td><a href="{{route('admin.survey.destroy',['id'=>$item->id])}}" class="btn btn-danger" id="delete">Delete</a></td>
                                 <td><a href="{{route('admin.survey.show',['id'=>$item->id])}}" class="btn btn-primary">Show</a></td>
                             </tr>
                             @endforeach

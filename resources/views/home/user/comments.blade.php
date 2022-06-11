@@ -23,9 +23,14 @@
                     <tr>
                         <td>{{$comment->id}}</td>
                         <td>
-                            <a class="text-primary" href="{{route('survey',['id' => $comment->survey_id])}}">
-                                {{$comment->survey->title}}
-                            </a>
+                            @if ($comment->survey)
+                                <a class="text-primary" href="{{route('survey',['id' => $comment->survey_id])}}">
+                                    {{$comment->survey->title}}
+                                </a>
+                            @else
+                                <span class="text-danger"> Survey {{$comment->survey_id}} has been deleted </span>
+                            @endif
+                            
                         </td>
                         <td>{{$comment->subject}}</td>
                         <td>{{$comment->review}}</td>

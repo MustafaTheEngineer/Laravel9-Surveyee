@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -134,6 +135,7 @@ class CategoryController extends Controller
         if($data->image && Storage::disk('public')->exists($data->image)){
             Storage::delete($data->image);
         }
+        $updateSurveys = survey::where('category_id', '=' ,$data->id)->update(['category_id' => $data->parent_id]);
         $data->delete();
         return redirect('admin/category');
         //

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\survey;
 use App\Models\Category;
+use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class AdminSurveyController extends Controller
@@ -46,7 +49,7 @@ class AdminSurveyController extends Controller
     {
         $data = new survey();
         $data->category_id = $request->category_id;
-        $data->user_id = 0;
+        $data->user_id = Auth::id();
         $data->title = $request->title;
         $data->keywords = $request->keywords;
         $data->description = $request->description;
@@ -58,7 +61,7 @@ class AdminSurveyController extends Controller
         $data->likes = 0;
         $data->status = $request->status;
         $data->save();
-        return redirect('admin/survey');
+        return redirect(route('admin.question.create',['id' => $data->id]));
     }
 
     /**
@@ -67,10 +70,21 @@ class AdminSurveyController extends Controller
      * @param  \App\Models\Category  $survey
      * @return \Illuminate\Http\Response
      */
-    public function show(survey $survey,$id)
+    public function show($id)
     {
         $data = Survey::find($id);
         return view('admin.survey.show',[
+            'data' => $data
+        ]);
+    }
+
+    public function statistics($id)
+    {
+        $data = Question::where('survey_id', '=',$id)->get();
+        dd($data[0]->attendance[0]);
+        exit();
+
+        return view('admin.survey.statistics',[
             'data' => $data
         ]);
     }
@@ -81,7 +95,7 @@ class AdminSurveyController extends Controller
      * @param  \App\Models\Category  $survey
      * @return \Illuminate\Http\Response
      */
-    public function edit(survey $survey,$id)
+    public function edit($id)
     {
         $data = Survey::find($id);
         $datalist = Category::all();
@@ -132,6 +146,5 @@ class AdminSurveyController extends Controller
         }
         $data->delete();
         return redirect('admin/survey');
-        //
     }
 }

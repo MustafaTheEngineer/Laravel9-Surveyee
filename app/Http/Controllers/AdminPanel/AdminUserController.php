@@ -5,8 +5,10 @@ namespace App\Http\Controllers\AdminPanel;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\RoleUser;
+use App\Models\survey;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminUserController extends Controller
 {
@@ -18,6 +20,15 @@ class AdminUserController extends Controller
     public function index()
     {
         $data = User::all();
+        return view('admin.user.index',[
+            'data' => $data
+        ]);
+    }
+
+    public function surveyfillers($id)
+    {
+        $attendance = DB::table('attendances')->where('survey_id','=',$id)->get('user_id')->pluck('user_id');
+        $data = User::whereIn('id' , $attendance)->get();
         return view('admin.user.index',[
             'data' => $data
         ]);

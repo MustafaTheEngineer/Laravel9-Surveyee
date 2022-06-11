@@ -75,9 +75,14 @@
                             <tr>
                                 <td>{{$item->id}}</td>
                                 <td>
-                                    <a href="{{route('admin.survey.show',['id' => $item->survey_id])}}">
-                                        {{$item->survey->title}}
-                                    </a>
+                                    @if ($item->survey)
+                                        <a href="{{route('admin.comment.show',['id' => $item->survey_id])}}">
+                                            {{$item->survey->title}}
+                                        </a>
+                                    @else
+                                        <span class="text-danger"> Survey {{$item->survey_id}} has been deleted </span>
+                                    @endif
+                                    
                                 </td>
                                 <td>{{$item->subject}}</td>
                                 <td>{{$item->review}}</td>

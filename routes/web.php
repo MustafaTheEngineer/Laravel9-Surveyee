@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminPanel\HomeController as AdminPanelHomeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminPanel\ImageController;
 use App\Http\Controllers\AdminPanel\MessageController;
+use App\Http\Controllers\AdminPanel\QuestionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,6 +73,10 @@ Route::middleware('auth')->group(function(){
         Route::get('/','index')->name('index');
         Route::get('/reviews','reviews')->name('reviews');
         Route::get('/reviewdestroy/{id}','reviewdestroy')->name('reviewdestroy');
+        Route::get('/fillsurvey/{id}','fillsurvey')->name('fillsurvey');
+        Route::post('/storeattendance','storeattendance')->name('storeattendance');
+        Route::get('/filledsurveys','filledsurveys')->name('filledsurveys');
+        Route::get('/createdsurveys','createdsurveys')->name('createdsurveys');
     });
     
     // ************************ ADMIN PANEL ROUTES ************************
@@ -98,6 +103,19 @@ Route::middleware('auth')->group(function(){
             Route::get('/','index')->name('index');
             Route::get('/create','create')->name('create');
             Route::post('/store','store')->name('store');
+            Route::get('/edit/{id}','edit')->name('edit');
+            Route::post('/update/{id}','update')->name('update');
+            Route::get('/destroy/{id}','destroy')->name('destroy');
+            Route::get('/show/{id}','show')->name('show');
+            Route::get('/statistics/{id}','statistics')->name('statistics');
+        });
+
+        // ************************ ADMIN QUESTION ROUTES ************************
+        Route::prefix('/question')->name('question.')->controller(QuestionController::class)->group(function(){
+            
+            Route::get('/','index')->name('index');
+            Route::get('/create/{id}','create')->name('create');
+            Route::post('/store/','store')->name('store');
             Route::get('/edit/{id}','edit')->name('edit');
             Route::post('/update/{id}','update')->name('update');
             Route::get('/destroy/{id}','destroy')->name('destroy');
@@ -147,6 +165,7 @@ Route::middleware('auth')->group(function(){
             Route::get('/destroy/{id}','destroy')->name('destroy');
             Route::post('/addrole/{id}','addrole')->name('addrole');
             Route::get('/destroyrole/{userID}/{roleID}','destroyrole')->name('destroyrole');
+            Route::get('/surveyfillers/{id}/','surveyfillers')->name('surveyfillers');
         });
     });
 });

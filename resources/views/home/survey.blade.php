@@ -12,6 +12,10 @@
             top: 500px;
             padding: 0;
         }
+
+        button[data-dismiss^="alert"]:hover{
+            background-color: #0D6EFD;
+        }
     </style>
     <!-- Favicon  -->
     <link rel="icon" href="{{asset('asset')}}/images/favicon.png">
@@ -31,9 +35,9 @@
             <p class="h1 my-3"><strong>{{$data->title}}</strong></p>
         </div>
         <div class="d-flex align-items-center" style="flex-direction: column;">
-            <button class="btn btn-primary btn-lg">
+            <a class="btn btn-primary btn-lg" href="{{route('userpanel.fillsurvey',['id' => $data->id, 'order' => 0])}}">
                 FILL
-            </button>
+            </a>
             <div class="mt-5 d-flex justify-content-center">
                 <div class="d-flex me-5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16"> 
@@ -69,7 +73,10 @@
                 <input type="hidden" class="form-control-input" value="{{$data->id}}" name="survey_id">
             </div>
             <div class="form-group">
-                <span>{{$data->user_id}}</span>
+                @auth
+                    <span>{{Auth::user()->name}}</span>
+                @endauth
+                
             </div>
             <div class="form-group">
                 <input type="text" class="form-control-input" placeholder="Subject" name="subject" required style="font-weight: 700;">
@@ -132,6 +139,9 @@
         @foreach ($reviews as $item)
             <ul class="mb-5 list-unstyled">
                 <li class="mb-3">
+                    <p class="username">
+                        {{$item->user->name}}
+                    </p>
                     <div class="star-date d-flex justify-content-start">
                         <div class="comment-section-stars">
                             @for ($i = 1; $i <= 5; $i++)

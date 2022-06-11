@@ -82,7 +82,7 @@
         const caret_buttons = document.querySelectorAll('.dropdown-caret-btn');
         caret_buttons.forEach(element => {
             element.addEventListener('click',function(){
-                const dropdown = this.nextElementSibling;
+                const dropdown = this.parentElement.nextElementSibling;
                 if (dropdown.style.display == "block") {
                     dropdown.style.display = "none";
                 } else {
