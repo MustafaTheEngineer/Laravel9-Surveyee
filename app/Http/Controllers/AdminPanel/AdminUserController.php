@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Role;
 use App\Models\RoleUser;
 use App\Models\survey;
@@ -29,6 +30,26 @@ class AdminUserController extends Controller
     {
         $attendance = DB::table('attendances')->where('survey_id','=',$id)->get('user_id')->pluck('user_id');
         $data = User::whereIn('id' , $attendance)->get();
+        return view('admin.user.index',[
+            'data' => $data
+        ]);
+    }
+
+    public function users()
+    {
+        $role = DB::table('roles')->where('name','=','user')->get()->pluck('id')[0];
+        $roleUser = RoleUser::where('role_id','=',$role)->get('user_id')->pluck('user_id');
+        $data = User::whereIn('id',$roleUser)->get();
+        return view('admin.user.index',[
+            'data' => $data
+        ]);
+    }
+
+    public function creators()
+    {
+        $role = DB::table('roles')->where('name','=','creator')->get()->pluck('id')[0];
+        $roleUser = RoleUser::where('role_id','=',$role)->get('user_id')->pluck('user_id');
+        $data = User::whereIn('id',$roleUser)->get();
         return view('admin.user.index',[
             'data' => $data
         ]);

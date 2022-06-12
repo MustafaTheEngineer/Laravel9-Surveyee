@@ -166,6 +166,8 @@ Route::middleware('auth')->group(function(){
             Route::post('/addrole/{id}','addrole')->name('addrole');
             Route::get('/destroyrole/{userID}/{roleID}','destroyrole')->name('destroyrole');
             Route::get('/surveyfillers/{id}/','surveyfillers')->name('surveyfillers');
+            Route::get('/users','users')->name('users');
+            Route::get('/creators','creators')->name('creators');
         });
     });
 });

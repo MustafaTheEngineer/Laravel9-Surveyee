@@ -5,7 +5,7 @@
 @section('content')
     <div class="container" style="margin-top: 150px;margin-bottom: 150px;">
         <h1 class="mb-5">Created Surveys</h1>
-
+        <h2><a type="button" class="btn btn-lg bg-dark text-white mb-5" href="{{route('admin.survey.create')}}"> Create Survey</a></h2>
         <div class="table-responsive m-b-40">
             <table class="table table-borderless table-data3">
                 <thead>

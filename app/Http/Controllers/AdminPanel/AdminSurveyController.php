@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class AdminSurveyController extends Controller
@@ -80,11 +81,48 @@ class AdminSurveyController extends Controller
 
     public function statistics($id)
     {
-        $data = Question::where('survey_id', '=',$id)->get();
-        dd($data[0]->attendance[0]);
-        exit();
+        $attendances = Attendance::where('survey_id','=',$id);
+        $questions = $attendances->distinct('question_id');
+        $questionsID = $questions->get('question_id')->pluck('question_id');
+        $questionClass = Question::where('survey_id','=',$id)->get();
+        $data = array();
 
+        foreach ($questionsID as $item) {
+            $answerNumbers = [];
+            $control = Attendance::where('question_id','=',$item)->get()[0]->question;
+            if($control->option1)
+                array_push($answerNumbers,Attendance::where('question_id','=',$item)->where('answer_id','=',1)->count('answer_id'));
+            else
+                array_push($answerNumbers,-1);
+            if($control->option2)
+                array_push($answerNumbers,Attendance::where('question_id','=',$item)->where('answer_id','=',2)->count('answer_id'));
+            else
+                array_push($answerNumbers,-1);
+            if($control->option3)
+                array_push($answerNumbers,Attendance::where('question_id','=',$item)->where('answer_id','=',3)->count('answer_id'));
+            else
+                array_push($answerNumbers,-1);
+
+            if($control->option4)
+                array_push($answerNumbers,Attendance::where('question_id','=',$item)->where('answer_id','=',4)->count('answer_id'));
+            else
+                array_push($answerNumbers,-1);
+            if($control->option5)
+                array_push($answerNumbers,Attendance::where('question_id','=',$item)->where('answer_id','=',5)->count('answer_id'));
+            else
+                array_push($answerNumbers,-1);
+
+
+            array_push($data,$answerNumbers);
+        }
+
+        $count = array_count_values($data[1]);
+        /*echo "<pre>";
+        echo print_r($count['0']).'<br>';
+        echo "</pre>";
+        exit();*/
         return view('admin.survey.statistics',[
+            'questionClass' => $questionClass,
             'data' => $data
         ]);
     }

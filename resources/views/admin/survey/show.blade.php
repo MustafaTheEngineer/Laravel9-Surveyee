@@ -177,7 +177,6 @@
                         @endif
                     </ul>
                     <div class="question-buttons">
-                        <a href="{{route('admin.question.edit',['id' => $question->id])}}" class="btn btn-warning my-3">Edit</a>
                         <a href="{{route('admin.question.destroy',['id' => $question->id])}}" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger my-3">Delete</a>
                     </div>
                 </div>

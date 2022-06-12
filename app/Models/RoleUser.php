@@ -10,4 +10,8 @@ class RoleUser extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function people(){
+        $this->hasMany(User::class);
+    }
 }

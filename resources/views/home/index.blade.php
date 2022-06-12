@@ -15,6 +15,15 @@
             padding: 0;
         }
 
+        .my-dropdown{
+            position: relative;
+        }
+
+        .my-dropdown ul{
+            position: absolute;
+            white-space: nowrap;
+        }
+
         .my-dropdown-menu{
             list-style: none;
             padding-left: 15px;
@@ -23,7 +32,6 @@
         }
 
         .label{
-            
             background-color: #ffffff;
             border: 1px solid #FF5574;
             border-radius: 5px;
@@ -359,27 +367,30 @@
 @php
     $mainCategories = \App\Http\Controllers\HomeController::mainCategoryList();
 @endphp
-<div class="container d-flex justify-content-center" id="categorytree">
-    @foreach ($mainCategories as $item)
-        <div class="my-dropdown">
-            <div class="label">
-                <a class="dropdown-caret-link text-decoration-none" href="{{route('categorysurveys',['id' => $item->id, 'slug' => $item->title])}}">
-                    {{$item->title}}
-                </a>
-                <button class="dropdown-caret-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                    </svg>
-                </button>
+<div class="container">
+    <h3 class="d-inline-block mb-5">Categories</h3>
+    <div class="d-flex justify-content-center" id="categorytree">
+        @foreach ($mainCategories as $item)
+            <div class="my-dropdown">
+                <div class="label">
+                    <a class="dropdown-caret-link text-decoration-none" href="{{route('categorysurveys',['id' => $item->id, 'slug' => $item->title])}}">
+                        {{$item->title}}
+                    </a>
+                    <button class="dropdown-caret-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <ul class="my-dropdown-menu">
+                    @if (count($item->children))
+                        @include('home.categorytree',['children' => $item->children])
+                    @endif
+                </ul>
             </div>
-            
-            <ul class="my-dropdown-menu">
-                @if (count($item->children))
-                    @include('home.categorytree',['children' => $item->children])
-                @endif
-            </ul>
-        </div>
-    @endforeach
+        @endforeach
+    </div>
 </div>
 
 <!-- Testimonials -->
