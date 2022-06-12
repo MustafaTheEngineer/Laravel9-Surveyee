@@ -19,6 +19,7 @@ class CategoryController extends Controller
             return $title;
         
         $parent = Category::find($category->parent_id);
+        
         $title = $parent->title.' > '.$title;
 
         return CategoryController::getParentsTree($parent, $title);
@@ -65,8 +66,10 @@ class CategoryController extends Controller
         $data->description = $request->description;
         if($request->file('image')){
             $data->image = $request->file('image')->store('images');
+            
         }
         $data->status = $request->status;
+
         $data->save();
         return redirect('admin/category');
     }

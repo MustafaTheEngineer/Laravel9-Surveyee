@@ -91,3 +91,14 @@
             });
         });
     </script>
+
+<script>
+    ClassicEditor
+            .create( document.querySelector( '#detail' ) )
+            .then( editor => {
+                    console.log( editor );
+            } )
+            .catch( error => {
+                    console.error( error );
+            } );
+</script>

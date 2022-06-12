@@ -1,34 +1,4 @@
-@extends('layouts.adminbase')
-
-@section('head')
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
-
-    <!-- Fontfaces CSS-->
-    <link href="{{asset('adminAssets')}}/css/font-face.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="{{asset('adminAssets')}}/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link href="{{asset('adminAssets')}}/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="{{asset('adminAssets')}}/css/theme.css" rel="stylesheet" media="all">
-@endsection
+@extends('layouts.frontbase')
 
 @section('title','Add Question')
 
@@ -77,7 +47,7 @@
         <!-- START FORM -->
         <div class="container my-3">
             <div class="card mx-5">
-                <form action="{{route('admin.question.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form action="{{route('userpanel.storequestion',[$data->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 
                 <div class="card-body card-block">
@@ -118,7 +88,7 @@
                     <button type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-dot-circle-o"></i> Submit
                     </button>
-                    <a type="button" href="{{route('admin.survey.show',['id' => $data->id])}}" class="btn btn-success btn-sm">
+                    <a type="button" href="{{route('userpanel.showsurvey',['id' => $data->id])}}" class="btn btn-success btn-sm">
                          Go to the survey page
                     </a>
                 </div>

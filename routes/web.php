@@ -77,6 +77,23 @@ Route::middleware('auth')->group(function(){
         Route::post('/storeattendance','storeattendance')->name('storeattendance');
         Route::get('/filledsurveys','filledsurveys')->name('filledsurveys');
         Route::get('/createdsurveys','createdsurveys')->name('createdsurveys');
+        Route::get('/statistics/{id}','statistics')->name('statistics');
+        Route::get('/createsurvey','createsurvey')->name('createsurvey');
+        Route::post('/storesurvey','storesurvey')->name('storesurvey');
+        Route::get('/editsurvey/{id}','editsurvey')->name('editsurvey');
+        Route::post('/updatesurvey/{id}','updatesurvey')->name('updatesurvey');
+        Route::get('/showsurvey/{id}','showsurvey')->name('showsurvey');
+        Route::get('/deletesurvey/{id}','destroysurvey')->name('deletesurvey');
+        Route::get('/addquestion/{id}','addquestion')->name('addquestion');
+        Route::post('/storequestion/{id}','storequestion')->name('storequestion');
+        Route::get('/surveyfillers/{id}','surveyfillers')->name('surveyfillers');
+
+        Route::prefix('/image')->name('image.')->controller(UserController::class)->group(function(){
+            Route::get('/{pid}','indeximage')->name('indeximage');
+            Route::get('/createimage','createimage')->name('createimage');
+            Route::post('/storeimage','storeimage')->name('storeimage');
+            Route::get('/destroy/{id}','destroy')->name('destroy');
+        });
     });
     
     // ************************ ADMIN PANEL ROUTES ************************

@@ -1,7 +1,7 @@
-@extends('layouts.adminbase')
+@extends('layouts.frontbase')
 
 @section('content')
-<div class="">
+<div style="margin-top: 150px;margin-bottom: 300px;">
     <div class="d-flex justify-content-center mt-5">
         <h2>Answered Questions: {{count($data)}}</h2>
     </div>
@@ -18,7 +18,6 @@
         @endphp
         <p>
             {{$questionClass[$key]->question}}
-            {{$sum}}
         </p>
         <ul class="list-unstyled d-flex justify-content-center" style="flex-direction: column;">
             <li>

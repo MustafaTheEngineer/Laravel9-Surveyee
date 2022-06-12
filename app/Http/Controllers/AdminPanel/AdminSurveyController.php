@@ -116,8 +116,8 @@ class AdminSurveyController extends Controller
             array_push($data,$answerNumbers);
         }
 
-        $count = array_count_values($data[1]);
-        /*echo "<pre>";
+        /*$count = array_count_values($data[1]);
+        echo "<pre>";
         echo print_r($count['0']).'<br>';
         echo "</pre>";
         exit();*/

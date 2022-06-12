@@ -103,12 +103,9 @@
                 </ul>
             </div>
             <div class="header__tool">
-                <div class="header-button-item has-noti js-item-menu">
+                <div class="header-button-item js-item-menu">
                     <i class="zmdi zmdi-notifications"></i>
                     <div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown">
-                        <div class="notifi__title">
-                            <p>You have 3 Notifications</p>
-                        </div>
                         <div class="notifi__item">
                             <div class="bg-c1 img-cir img-40">
                                 <i class="zmdi zmdi-email-open"></i>

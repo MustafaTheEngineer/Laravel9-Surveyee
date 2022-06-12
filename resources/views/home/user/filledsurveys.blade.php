@@ -11,6 +11,7 @@
                 <thead>
                     <tr>
                         <th>TITLE</th>
+                        <th>IMAGE</th>
                         <th>DESCRIPTION</th>
                     </tr>
                 </thead>
@@ -26,6 +27,11 @@
                                 <span class="text-danger"> Survey {{$comment->survey_id}} has been deleted </span>
                             @endif
                             
+                        </td>
+                        <td>
+                            <div>
+                                <img src="{{Storage::url($item->image)}}" class="d-inline-block" alt="" style="width: 200px; height:100px;object-fit:cover;">
+                            </div>
                         </td>
                         <td>
                             {{$item->description}}

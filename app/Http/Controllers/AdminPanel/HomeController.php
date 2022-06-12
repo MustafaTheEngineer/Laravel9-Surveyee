@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,10 @@ use function PHPUnit\Framework\isNull;
 class HomeController extends Controller
 {
     public function index(){
-        return view('admin.index');
+        $data = Message::where('status','=','New')->limit(3)->get();
+        return view('admin.index',[
+            'data' => $data
+        ]);
     }
 
     public function setting(){

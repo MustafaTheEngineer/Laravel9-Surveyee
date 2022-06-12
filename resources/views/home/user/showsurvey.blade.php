@@ -1,34 +1,4 @@
-@extends('layouts.adminbase')
-
-@section('head')
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
-
-    <!-- Fontfaces CSS-->
-    <link href="{{asset('adminAssets')}}/css/font-face.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="{{asset('adminAssets')}}/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link href="{{asset('adminAssets')}}/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="{{asset('adminAssets')}}/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="{{asset('adminAssets')}}/css/theme.css" rel="stylesheet" media="all">
-@endsection
+@extends('layouts.frontbase')
 
 @section('title','Survey - '.$data->title)
 
@@ -53,12 +23,6 @@
                                     <li class="list-inline-item">Show Survey</li>
                                 </ul>
                             </div>
-                            <form class="au-form-icon--sm" action="" method="post">
-                                <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
-                                <button class="au-btn--submit2" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -99,7 +63,9 @@
                             <tr>
                                 <th class="col-2">Creator</th>
                                 <td class="col-10">
-                                    <a href="{{route('admin.user.show',['id'=> $data->user->id])}}" class="text-primary">
+                                    <a @if (Auth::id() == $data->user_id)
+                                        href="{{route('userpanel.index',['id'=> $data->user->id])}}" class="text-primary"
+                                    @endif>
                                         {{$data->user->name}}
                                     </a>
                                 </td>
@@ -136,11 +102,11 @@
                     </table>
                 </div>
 
-                <a href="{{route('admin.question.create',['id' => $data->id])}}" class="btn btn-primary my-3">Add Question</a>
-                <a href="{{route('admin.survey.edit',['id' => $data->id])}}" class="btn btn-warning my-3">Edit</a>
-                <a href="{{route('admin.survey.destroy',['id' => $data->id])}}" class="btn btn-danger my-3" onclick="return confirm('Are you sure to delete?')">Delete</a>
-                <a href="{{route('admin.user.surveyfillers',['id' => $data->id])}}" class="btn btn-success my-3 " style="margin-left: rem;">Attendances</a>
-                <a href="{{route('admin.survey.statistics',['id' => $data->id])}}" class="btn btn-secondary my-3 " style="margin-left: rem;">
+                <a href="{{route('userpanel.addquestion',['id' => $data->id])}}" class="btn btn-primary my-3">Add Question</a>
+                <a href="{{route('userpanel.editsurvey',['id' => $data->id])}}" class="btn btn-warning my-3">Edit</a>
+                <a href="{{route('userpanel.deletesurvey',['id' => $data->id])}}" class="btn btn-danger my-3" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                <a href="{{route('userpanel.surveyfillers',['id' => $data->id])}}" class="btn btn-success my-3 " style="margin-left: rem;">Attendances</a>
+                <a href="{{route('userpanel.statistics',['id' => $data->id])}}" class="btn btn-secondary my-3 " style="margin-left: rem;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
                       </svg>

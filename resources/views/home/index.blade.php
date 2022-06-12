@@ -78,12 +78,12 @@
         <div class="row">
             <div class="col-lg-6 col-xl-5">
                 <div class="text-container">
-                    <div class="section-title">Welcome to Zinc web agency</div>
-                    <h1 class="h1-large">Zinc creates stylish and efficient sites</h1>
+                    <div class="section-title">Welcome to Surveyee survey agency</div>
+                    <h1 class="h1-large">Surveyee creates stylish and efficient surveys</h1>
                     <p class="p-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dignissim, neque ut
                         ultrices sollicitudin</p>
                     <a class="btn-solid-lg" href="#services">Offered services</a>
-                    <a class="quote" href="#contact"><i class="fas fa-paper-plane"></i>Sign up</a>
+                    <a class="quote" href="{{route('registeruser')}}"><i class="fas fa-paper-plane"></i>Sign up</a>
                 </div> <!-- end of text-container -->
             </div> <!-- end of col -->
             <div class="col-lg-6 col-xl-7">
@@ -116,19 +116,23 @@
             @foreach ($sliderdata as $key => $item)
                 @if (!$key)
                 <div class="carousel-item active">
-                    <img src="{{Storage::url($item->image)}}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>{{$item->title}}</h5>
-                        <p>{{$item->description}}</p>
-                    </div>
+                    <img src="{{Storage::url($item->image)}}" class="d-block w-100" alt="" style="object-fit:cover;object-position:center 20px;">
+                    <a href="{{route('survey',['id' => $item->id])}}">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{$item->title}}</h5>
+                            <p>{{$item->description}}</p>
+                        </div>
+                    </a>
                 </div>
                 @else
                 <div class="carousel-item">
                     <img src="{{Storage::url($item->image)}}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>{{$item->title}}</h5>
-                        <p>{{$item->description}}</p>
-                    </div>
+                    <a href="{{route('survey',['id' => $item->id])}}">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{$item->title}}</h5>
+                            <p>{{$item->description}}</p>
+                        </div>
+                    </a>
                 </div>
                 @endif
             @endforeach
@@ -160,8 +164,8 @@
                         <span class="far fa-file-alt"></span>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Landing page</h5>
-                        <p>Lorem ipsum dolor sit amet, consect adipiscing elit nulla id nisl blah nor</p>
+                        <h5 class="card-title">Fill survey</h5>
+                        <p>Fill surveys and help your coorperates/friends/teacher</p>
                         <ul class="list-unstyled li-space-lg">
                             <li class="d-flex">
                                 <i class="fas fa-check"></i>
@@ -190,8 +194,8 @@
                         <span class="fas fa-solar-panel"></span>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Corporate site</h5>
-                        <p>Nam eu erat tellused vivamus vitae sem in tortor pharetra vehicula orn</p>
+                        <h5 class="card-title">Create survey</h5>
+                        <p>Design your own surveys and get info you need</p>
                         <ul class="list-unstyled li-space-lg">
                             <li class="d-flex">
                                 <i class="fas fa-check"></i>
@@ -220,7 +224,7 @@
                         <span class="fas fa-gift"></span>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Online shop</h5>
+                        <h5 class="card-title">Big data</h5>
                         <p>Nullam lobortis porta diam, vitae dictum metus placerat luctus bora</p>
                         <ul class="list-unstyled li-space-lg">
                             <li class="d-flex">
@@ -317,7 +321,7 @@
                             <div class="flex-grow-1">Id ultricies fringilla fangor raq trinit</div>
                         </li>
                     </ul>
-                    <a id="modalCtaBtn" class="btn-solid-reg" href="#">Details</a>
+                    <a id="modalCtaBtn" class="btn-solid-reg" href="{{route('about')}}">Details</a>
                     <button type="button" class="btn-outline-reg" data-bs-dismiss="modal">Close</button>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
@@ -340,12 +344,12 @@
                     <!-- Counter -->
                     <div class="counter-container">
                         <div class="counter-cell">
-                            <div data-purecounter-start="0" data-purecounter-end="1250" data-purecounter-duration="2"
+                            <div data-purecounter-start="0" data-purecounter-end="1250000" data-purecounter-duration="2"
                                 class="purecounter">1</div>
                             <div class="counter-info">Happy Customers</div>
                         </div> <!-- end of counter-cell -->
                         <div class="counter-cell red">
-                            <div data-purecounter-start="0" data-purecounter-end="1380" data-purecounter-duration="2"
+                            <div data-purecounter-start="0" data-purecounter-end="130480" data-purecounter-duration="2"
                                 class="purecounter">1</div>
                             <div class="counter-info">Issues Solved</div>
                         </div> <!-- end of counter-cell -->
@@ -522,7 +526,7 @@
                     <div class="card-body">
                         <div class="card-title">
                             <img class="decoration-lines" src="{{asset('assets')}}/images/decoration-lines.svg"
-                                alt="alternative"><span>Landing page</span><img class="decoration-lines flipped"
+                                alt="alternative"><span>Survey data up to 1TB</span><img class="decoration-lines flipped"
                                 src="{{asset('assets')}}/images/decoration-lines.svg" alt="alternative">
                         </div>
                         <ul class="list-unstyled li-space-lg">
@@ -545,7 +549,7 @@
                     <div class="card-body">
                         <div class="card-title">
                             <img class="decoration-lines" src="{{asset('assets')}}/images/decoration-lines.svg"
-                                alt="alternative"><span>Corporate site</span><img class="decoration-lines flipped"
+                                alt="alternative"><span>Survey data up to 2TB</span><img class="decoration-lines flipped"
                                 src="{{asset('assets')}}/images/decoration-lines.svg" alt="alternative">
                         </div>
                         <ul class="list-unstyled li-space-lg">
@@ -568,7 +572,7 @@
                     <div class="card-body">
                         <div class="card-title">
                             <img class="decoration-lines" src="{{asset('assets')}}/images/decoration-lines.svg"
-                                alt="alternative"><span>Online shop</span><img class="decoration-lines flipped"
+                                alt="alternative"><span>Survey data up to 3TB</span><img class="decoration-lines flipped"
                                 src="{{asset('assets')}}/images/decoration-lines.svg" alt="alternative">
                         </div>
                         <ul class="list-unstyled li-space-lg">
@@ -609,54 +613,4 @@
     </div> <!-- end of container -->
 </div> <!-- end of basic-2 -->
 <!-- end of invitation -->
-
-
-<!-- Contact -->
-<div id="contact" class="form-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="h2-heading"><span>Use the following form to</span><br> request a quote for your project</h2>
-                <p class="p-heading">Vel malesuada sapien condimentum nec. Fusce interdum nec urna et finibus pulvinar
-                    tortor id</p>
-                <ul class="list-unstyled li-space-lg">
-                    <li><i class="fas fa-map-marker-alt"></i> &nbsp;22 Praesentum, Pharetra Fin, CB 12345, KL</li>
-                    <li><i class="fas fa-phone"></i> &nbsp;<a href="tel:00817202212">+81 720 2212</a></li>
-                    <li><i class="fas fa-envelope"></i> &nbsp;<a href="mailto:lorem@ipsum.com">lorem@ipsum.com</a></li>
-                </ul>
-            </div> <!-- end of col -->
-        </div> <!-- end of row -->
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-
-                <!-- Contact Form -->
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control-input" placeholder="Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control-input" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control-select" required>
-                            <option class="select-option" value="" disabled selected>Project type</option>
-                            <option class="select-option" value="Company Website">Company Website</option>
-                            <option class="select-option" value="Landing Page">Landing Page</option>
-                            <option class="select-option" value="Online Shop">Online Shop</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control-textarea" placeholder="Message" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="form-control-submit-button">Submit</button>
-                    </div>
-                </form>
-                <!-- end of contact form -->
-
-            </div> <!-- end of col -->
-        </div> <!-- end of row -->
-    </div> <!-- end of container -->
-</div> <!-- end of form-1 -->
-<!-- end of contact -->
 @endsection

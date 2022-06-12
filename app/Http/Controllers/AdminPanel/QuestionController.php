@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Question;
 use App\Models\survey;
 use Illuminate\Http\Request;
@@ -111,7 +112,9 @@ class QuestionController extends Controller
     {
         $data = Question::find($id);
         $survey_id = $data->survey_id;
+        
         $data->delete();
+        Attendance::where('question_id','=',$id)->delete();
         return redirect(route('admin.survey.show',['id' => $survey_id]));
     }
 }

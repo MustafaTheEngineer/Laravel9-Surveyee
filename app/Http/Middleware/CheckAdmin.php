@@ -29,11 +29,11 @@ class CheckAdmin
         
         
         $userRoles = Auth::user()->roles->pluck('name');
-        //dd($survey);
-        /*if(!str_contains($path,'/admin/user/surveyfillers/'.$survey)){
+
+        if(str_contains($path,'/admin') and !$userRoles->contains('admin') and !$userRoles->contains('creator')){
             return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission']);
-        }*/
-        if(str_contains($path,'/admin/survey/show')){
+        }
+        else if(str_contains($path,'/admin/survey/show')){
             if($userID != Auth::id() and !$userRoles->contains('admin')){
                 return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission']);
             }
@@ -43,13 +43,20 @@ class CheckAdmin
                 return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission to see surveyees']);
             }
         }
-        else if(str_contains($path,'survey/create') or str_contains($path,'category/create')){
-            if(!$userRoles->contains('admin') and !$userRoles->contains('creator'))
-                return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission to create']);
+        else if(str_contains($path,'/admin/user/users')){
+            if(!$userRoles->contains('admin')){
+                return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission to see users']);
+            }
         }
-        else if (!$userRoles->contains('admin') and
-        str_contains($path,'/admin/user')){
-            return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission']);
+        else if(str_contains($path,'/admin/user/creators')){
+            if(!$userRoles->contains('admin') and !$userRoles->contains('creator')){
+                return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission to see all users']);
+            }
+        }
+        else if(str_contains($path,'/admin/user')){
+            if(!$userRoles->contains('admin')){
+                return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission to see all users']);
+            }
         }
 
         return $next($request);

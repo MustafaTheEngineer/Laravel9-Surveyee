@@ -22,10 +22,7 @@
                     <a class="nav-link" href="#services">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#projects">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#pricing">Pricing</a>
+                    <a class="nav-link" href="{{route('userpanel.createsurvey')}}">Create</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown"
