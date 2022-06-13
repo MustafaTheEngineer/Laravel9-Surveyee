@@ -15,22 +15,16 @@
                             <span class="bot-line"></span>Dashboard</a>
                     </li>
                     <li class="has-sub">
-                        <a href="{{route('admin.survey.index')}}">
+                        <a href="">
                             <i class="fas fa-th"></i>Surveys
                             <span class="bot-line"></span>
                         </a>
                         <ul class="header3-sub-list list-unstyled">
                             <li>
-                                <a href="index.html">New surveys</a>
+                                <a href="{{route('admin.survey.index')}}">All surveys</a>
                             </li>
                             <li>
-                                <a href="index2.html">Popular surveys</a>
-                            </li>
-                            <li>
-                                <a href="index3.html">Dashboard 3</a>
-                            </li>
-                            <li>
-                                <a href="index4.html">Dashboard 4</a>
+                                <a href="{{route('admin.survey.myindex')}}">My surveys</a>
                             </li>
                         </ul>
                     </li>

@@ -118,6 +118,7 @@ Route::middleware('auth')->group(function(){
         Route::prefix('/survey')->name('survey.')->controller(AdminSurveyController::class)->group(function(){
             
             Route::get('/','index')->name('index');
+            Route::get('/myindex','myindex')->name('myindex');
             Route::get('/create','create')->name('create');
             Route::post('/store','store')->name('store');
             Route::get('/edit/{id}','edit')->name('edit');

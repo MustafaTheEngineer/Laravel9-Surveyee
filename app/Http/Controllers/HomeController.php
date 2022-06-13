@@ -32,7 +32,8 @@ class HomeController extends Controller
 
     public function categorysurveys($id){
         $category = Category::find($id);
-        $surveys = DB::table('surveys')->where('category_id',$id)->get();
+        $surveys = survey::where('category_id',$id)->get();
+        
         return view('home.categorysurveys',[
             'category' => $category,
             'surveys' => $surveys

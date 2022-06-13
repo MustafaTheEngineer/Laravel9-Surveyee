@@ -38,6 +38,11 @@ class CheckAdmin
                 return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission']);
             }
         }
+        else if(str_contains($path,'/admin/survey/edit')){
+            if($userID != Auth::id() and !$userRoles->contains('admin')){
+                return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission']);
+            }
+        }
         else if(str_contains($path,'/admin/user/surveyfillers/')){
             if($userID != Auth::id() and !$userRoles->contains('admin')){
                 return redirect(route('loginadmin'))->withErrors(['error' => 'You do not have permission to see surveyees']);

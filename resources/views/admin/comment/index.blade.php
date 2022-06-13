@@ -76,7 +76,7 @@
                                 <td>{{$item->id}}</td>
                                 <td>
                                     @if ($item->survey)
-                                        <a href="{{route('admin.comment.show',['id' => $item->survey_id])}}">
+                                        <a href="{{route('admin.survey.show',['id' => $item->survey_id])}}">
                                             {{$item->survey->title}}
                                         </a>
                                     @else

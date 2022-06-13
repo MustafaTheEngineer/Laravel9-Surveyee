@@ -27,6 +27,15 @@ class AdminSurveyController extends Controller
         ]);
     }
 
+    public function myindex()
+    {
+        $data = Survey::where('user_id','=',Auth::id())->get();
+        
+        return view('admin.survey.index',[
+            'data' => $data
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
